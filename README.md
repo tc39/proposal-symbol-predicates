@@ -33,12 +33,14 @@ You can detect in a library if a symbol can be used as a WeakMap key:
 function isWeakMapKey(key) {
   switch (typeof key): {
     case "object":
+      return key !== null;
     case "function":
       return true;
     case "symbol":
       return !Symbol.isRegistered(sym);
   }
-};
+  return false;
+}
 
 isWeakMapKey({}); // true
 isWeakMapKey(Symbol()); // true
