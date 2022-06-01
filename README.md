@@ -1,58 +1,82 @@
-# template-for-proposals
+# Symbol Predicates Proposal
 
-A repository template for ECMAScript proposals.
+## Status
 
-## Before creating a proposal
+Stage 0
 
-Please ensure the following:
-  1. You have read the [process document](https://tc39.github.io/process-document/)
-  1. You have reviewed the [existing proposals](https://github.com/tc39/proposals/)
-  1. You are aware that your proposal requires being a member of TC39, or locating a TC39 delegate to "champion" your proposal
+Champion: _Robin Ricard_
 
-## Create your proposal repo
+Author: _Robin Ricard_
 
-Follow these steps:
-  1. Click the green ["use this template"](https://github.com/tc39/template-for-proposals/generate) button in the repo header. (Note: Do not fork this repo in GitHub's web interface, as that will later prevent transfer into the TC39 organization)
-  1. Update the biblio to the latest version: `npm install --save-dev --save-exact @tc39/ecma262-biblio@latest`.
-  1. Go to your repo settings “Options” page, under “GitHub Pages”, and set the source to the **main branch** under the root (and click Save, if it does not autosave this setting)
-      1. check "Enforce HTTPS"
-      1. On "Options", under "Features", Ensure "Issues" is checked, and disable "Wiki", and "Projects" (unless you intend to use Projects)
-      1. Under "Merge button", check "automatically delete head branches"
-<!--
-  1. Avoid merge conflicts with build process output files by running:
-      ```sh
-      git config --local --add merge.output.driver true
-      git config --local --add merge.output.driver true
-      ```
-  1. Add a post-rewrite git hook to auto-rebuild the output on every commit:
-      ```sh
-      cp hooks/post-rewrite .git/hooks/post-rewrite
-      chmod +x .git/hooks/post-rewrite
-      ```
--->
-  3. ["How to write a good explainer"][explainer] explains how to make a good first impression.
+## Motivation
 
-      > Each TC39 proposal should have a `README.md` file which explains the purpose
-      > of the proposal and its shape at a high level.
-      >
-      > ...
-      >
-      > The rest of this page can be used as a template ...
+A proposal to introduce ways to differentiate symbols.
 
-      Your explainer can point readers to the `index.html` generated from `spec.emu`
-      via markdown like
+This proposal adds the following predicates:
 
-      ```markdown
-      You can browse the [ecmarkup output](https://ACCOUNT.github.io/PROJECT/)
-      or browse the [source](https://github.com/ACCOUNT/PROJECT/blob/HEAD/spec.emu).
-      ```
+- `Symbol.isRegistered(symbol)`
+- `Symbol.isWellKnown(symbol)`
 
-      where *ACCOUNT* and *PROJECT* are the first two path elements in your project's Github URL.
-      For example, for github.com/**tc39**/**template-for-proposals**, *ACCOUNT* is "tc39"
-      and *PROJECT* is "template-for-proposals".
+Not all symbols are the same and knowing more about what they are can be useful, notably for libraries.
 
+Knowing if a symbol is truly unique, is forgeable (registered) or is shared across realms (well-known), can be important depending on the use case.
 
-## Maintain your proposal repo
+For instance [Symbols as WeakMap keys] require symbols to not be registered.
+
+[Symbols as WeakMap keys]: https://github.com/tc39/proposal-symbols-as-weakmap-keys
+
+## Use Cases
+
+You can detect in a library if a symbol can be used as a WeakMap key:
+
+```js
+function isWeakMapKey(key) {
+  switch (typeof key): {
+    case "object":
+    case "function":
+      return true;
+    case "symbol":
+      return !Symbol.isRegistered(sym);
+  }
+};
+
+isWeakMapKey({}); // true
+isWeakMapKey(Symbol()); // true
+isWeakMapKey("foo"); // false
+isWeakMapKey(Symbol.for("foo")); // false
+isWeakMapKey(Symbol.asyncIterator); // true
+```
+
+You can also find out if you are being given a truly unique symbol:
+
+```js
+const isUniqueSymbol = sym => !(Symbol.isRegistered(sym) || Symbol.isWellKnown(sym));
+
+isUniqueSymbol(Symbol()); // true
+isUniqueSymbol(Symbol.for("foo")); // false
+isUniqueSymbol(Symbol.asyncIterator); // false
+```
+
+## Description
+
+### `Symbol.isRegistered(symbol)`
+
+Takes a symbol as the only argument, returns a boolean: `true` if the symbol is registered, `false` otherwise.
+
+### `Symbol.isWellKnown(symbol)`
+
+Takes a symbol as the only argument, returns a boolean: `true` if the symbol is one of the well known symbols as defined by ECMA262 & ECMA402, `false` otherwise.
+
+## Implementations
+
+### Polyfill implementations
+
+- `Symbol.isRegistered(symbol)`: https://github.com/inspect-js/is-registered-symbol
+- `Symbol.isWellKnown(symbol)`: https://github.com/inspect-js/is-well-known-symbol
+
+---
+
+## Maintain the proposal repo
 
   1. Make your changes to `spec.emu` (ecmarkup uses HTML syntax, but is not HTML, so I strongly suggest not naming it ".html")
   1. Any commit that makes meaningful changes to the spec, should run `npm run build` and commit the resulting output.
