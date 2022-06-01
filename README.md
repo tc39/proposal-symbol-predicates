@@ -50,22 +50,23 @@ isWeakMapKey(Symbol.asyncIterator); // true
 You can also find out if you are being given a truly unique symbol:
 
 ```js
-const isUniqueSymbol = sym => !(Symbol.isRegistered(sym) || Symbol.isWellKnown(sym));
+const isUniqueSymbol = sym => typeof sym === "symbol" && !(Symbol.isRegistered(sym) || Symbol.isWellKnown(sym));
 
 isUniqueSymbol(Symbol()); // true
 isUniqueSymbol(Symbol.for("foo")); // false
 isUniqueSymbol(Symbol.asyncIterator); // false
+isUniqueSymbol({}); // false
 ```
 
 ## Description
 
-### `Symbol.isRegistered(symbol)`
+### `Symbol.isRegistered(value)`
 
-Takes a symbol as the only argument, returns a boolean: `true` if the symbol is registered, `false` otherwise.
+Takes an unknown value as the only argument, returns a boolean: `true` if the symbol is registered, `false` otherwise.
 
-### `Symbol.isWellKnown(symbol)`
+### `Symbol.isWellKnown(value)`
 
-Takes a symbol as the only argument, returns a boolean: `true` if the symbol is one of the well known symbols as defined by ECMA262 & ECMA402, `false` otherwise.
+Takes an unknown value as the only argument, returns a boolean: `true` if the symbol is one of the well known symbols as defined by ECMA262 & ECMA402, `false` otherwise.
 
 ## Implementations
 
