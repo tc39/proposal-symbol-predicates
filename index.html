@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/base16/solarized-light.min.css"><link rel="stylesheet" href="./spec.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
 <script src="./spec.js"></script>
-<title>Proposal Title Goes Here</title><script>'use strict';
+<title>Symbol Predicates</title><script>'use strict';
 let sdoBox = {
   init() {
     this.$alternativeId = null;
@@ -754,6 +754,7 @@ let referencePane = {
 
     let $spacer = document.createElement('div');
     $spacer.setAttribute('id', 'references-pane-spacer');
+    $spacer.classList.add('menu-spacer');
 
     this.$pane = document.createElement('div');
     this.$pane.setAttribute('id', 'references-pane');
@@ -1259,7 +1260,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 let sdoMap = JSON.parse(`{}`);
-let biblio = JSON.parse(`{"refsByClause":{},"entries":[{"type":"clause","id":"sec-demo-clause","titleHTML":"This is an emu-clause","number":"1"},{"type":"clause","id":"sec-copyright-and-software-license","title":"Copyright & Software License","titleHTML":"Copyright &amp; Software License","number":"A"}]}`);
+let biblio = JSON.parse(`{"refsByClause":{},"entries":[{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"1"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"2"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"3"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"4"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"5"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"6"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"7"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"8"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"9"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"10"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"11"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"12"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"13"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"14"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"15"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"16"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"17"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"18"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"19"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"20.1"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"20.2"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"20.3"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"20.4.1"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"20.4.2.1"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"20.4.2.2"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"20.4.2.3"},{"type":"clause","id":"sec-placeholder","titleHTML":"Placeholder to ensure correct clause numbering","number":"20.4.2.4"},{"type":"clause","id":"sec-symbol-isregistered","title":"Symbol.isRegistered ( value )","titleHTML":"Symbol.isRegistered ( <var>value</var> )","number":"20.4.2.5"},{"type":"clause","id":"sec-symbol-iswellknown","title":"Symbol.isWellKnown ( value )","titleHTML":"Symbol.isWellKnown ( <var>value</var> )","number":"20.4.2.6"},{"type":"clause","id":"sec-properties-of-the-symbol-constructor","titleHTML":"Properties of the Symbol Constructor","number":"20.4.2"},{"type":"clause","id":"sec-symbol-objects","titleHTML":"Symbol Objects","number":"20.4"},{"type":"clause","id":"sec-fundamental-objects","titleHTML":"Fundamental Objects","number":"20"},{"type":"clause","id":"sec-copyright-and-software-license","title":"Copyright & Software License","titleHTML":"Copyright &amp; Software License","number":"A"}]}`);
 ;let usesMultipage = false</script><style>body {
   display: flex;
   font-size: 18px;
@@ -2010,7 +2011,7 @@ tr.del > td {
   z-index: 2;
 }
 
-#menu-spacer {
+.menu-spacer {
   flex-basis: 33%;
   max-width: 500px;
   flex-grow: 0;
@@ -2425,11 +2426,6 @@ li.menu-search-result-term:before {
   overflow-y: auto;
 }
 
-#references-pane-spacer {
-  flex-basis: 33%;
-  max-width: 500px;
-}
-
 #references-pane {
   flex-grow: 1;
   overflow: hidden;
@@ -2445,6 +2441,10 @@ li.menu-search-result-term:before {
   content: '✖';
   float: right;
   cursor: pointer;
+}
+
+#references-pane table tbody {
+  vertical-align: baseline;
 }
 
 #references-pane table tr td:first-child {
@@ -2524,17 +2524,82 @@ li.menu-search-result-term:before {
 </ul></div><div id="menu-toggle"><svg xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%; stroke:currentColor" viewBox="0 0 120 120">
       <title>Menu</title>
       <path stroke-width="10" stroke-linecap="round" d="M30,60 h60  M30,30 m0,5 h60  M30,90 m0,-5 h60"></path>
-    </svg></div><div id="menu-spacer"></div><div id="menu"><div id="menu-search"><input type="text" id="menu-search-box" placeholder="Search..."><div id="menu-search-results" class="inactive"></div></div><div id="menu-pins"><div class="menu-pane-header">Pins</div><ul id="menu-pins-list"></ul></div><div class="menu-pane-header">Table of Contents</div><div id="menu-toc"><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-demo-clause" title="This is an emu-clause"><span class="secnum">1</span> This is an emu-clause</a></li><li><span class="item-toggle-none"></span><a href="#sec-copyright-and-software-license" title="Copyright &amp; Software License"><span class="secnum">A</span> Copyright &amp; Software License</a></li></ol></div></div><div id="spec-container"><h1 class="version">Stage -1 Draft / July 8, 2022</h1><h1 class="title">Proposal Title Goes Here</h1>
+    </svg></div><div id="menu-spacer" class="menu-spacer"></div><div id="menu"><div id="menu-search"><input type="text" id="menu-search-box" placeholder="Search..."><div id="menu-search-results" class="inactive"></div></div><div id="menu-pins"><div class="menu-pane-header">Pins</div><ul id="menu-pins-list"></ul></div><div class="menu-pane-header">Table of Contents</div><div id="menu-toc"><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">1</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">2</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">3</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">4</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">5</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">6</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">7</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">8</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">9</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">10</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">11</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">12</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">13</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">14</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">15</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">16</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">17</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">18</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">19</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle">◢</span><a href="#sec-fundamental-objects" title="Fundamental Objects"><span class="secnum">20</span> Fundamental Objects</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">20.1</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">20.2</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">20.3</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle">◢</span><a href="#sec-symbol-objects" title="Symbol Objects"><span class="secnum">20.4</span> Symbol Objects</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">20.4.1</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle">◢</span><a href="#sec-properties-of-the-symbol-constructor" title="Properties of the Symbol Constructor"><span class="secnum">20.4.2</span> Properties of the Symbol Constructor</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">20.4.2.1</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">20.4.2.2</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">20.4.2.3</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-placeholder" title="Placeholder to ensure correct clause numbering"><span class="secnum">20.4.2.4</span> Placeholder to ensure correct clause numbering</a></li><li><span class="item-toggle-none"></span><a href="#sec-symbol-isregistered" title="Symbol.isRegistered ( value )"><span class="secnum">20.4.2.5</span> Symbol.isRegistered ( <var>value</var> )</a></li><li><span class="item-toggle-none"></span><a href="#sec-symbol-iswellknown" title="Symbol.isWellKnown ( value )"><span class="secnum">20.4.2.6</span> Symbol.isWellKnown ( <var>value</var> )</a></li></ol></li></ol></li></ol></li><li><span class="item-toggle-none"></span><a href="#sec-copyright-and-software-license" title="Copyright &amp; Software License"><span class="secnum">A</span> Copyright &amp; Software License</a></li></ol></div></div><div id="spec-container"><h1 class="version">Stage -1 Draft / July 9, 2022</h1><h1 class="title">Symbol Predicates</h1>
 
-<emu-clause id="sec-demo-clause">
-  <h1><span class="secnum">1</span> This is an emu-clause</h1>
-  <p>This is an algorithm:</p>
-  <emu-alg><ol><li>Let <var>proposal</var> be <emu-val>undefined</emu-val>.</li><li>If IsAccepted(<var>proposal</var>), then<ol><li>Let <var>stage</var> be <emu-val>0</emu-val><sub>ℤ</sub>.</li></ol></li><li>Else,<ol><li>Let <var>stage</var> be <emu-val>-1</emu-val><sub>ℤ</sub>.</li></ol></li><li>Return ?&nbsp;<emu-xref aoid="ToString"><a href="https://tc39.es/ecma262/#sec-tostring">ToString</a></emu-xref>(<var>proposal</var>).</li></ol></emu-alg>
+<style>
+#sec-placeholder, [href="#sec-placeholder"] {
+  display: none;
+}
+</style>
+<script>
+  Array.from(document.querySelectorAll('ol.toc li'), function (node) {
+    if (node.querySelector(':scope > [href="#sec-placeholder"]')) {
+      node.style.display = 'none';
+    }
+  });
+</script>
+
+<emu-clause id="sec-placeholder"><h1><span class="secnum">1</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1><span class="secnum">2</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1><span class="secnum">3</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1><span class="secnum">4</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1><span class="secnum">5</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1><span class="secnum">6</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1><span class="secnum">7</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1><span class="secnum">8</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1><span class="secnum">9</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1><span class="secnum">10</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1><span class="secnum">11</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1><span class="secnum">12</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1><span class="secnum">13</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1><span class="secnum">14</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1><span class="secnum">15</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1><span class="secnum">16</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1><span class="secnum">17</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1><span class="secnum">18</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1><span class="secnum">19</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+
+<emu-clause id="sec-fundamental-objects">
+  <h1><span class="secnum">20</span> Fundamental Objects</h1>
+
+  <emu-clause id="sec-placeholder"><h1><span class="secnum">20.1</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+  <emu-clause id="sec-placeholder"><h1><span class="secnum">20.2</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+  <emu-clause id="sec-placeholder"><h1><span class="secnum">20.3</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+
+  <emu-clause id="sec-symbol-objects">
+    <h1><span class="secnum">20.4</span> Symbol Objects</h1>
+
+    <emu-clause id="sec-placeholder"><h1><span class="secnum">20.4.1</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+
+    <emu-clause id="sec-properties-of-the-symbol-constructor">
+      <h1><span class="secnum">20.4.2</span> Properties of the Symbol Constructor</h1>
+
+      <emu-clause id="sec-placeholder"><h1><span class="secnum">20.4.2.1</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+      <emu-clause id="sec-placeholder"><h1><span class="secnum">20.4.2.2</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+      <emu-clause id="sec-placeholder"><h1><span class="secnum">20.4.2.3</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+      <emu-clause id="sec-placeholder"><h1><span class="secnum">20.4.2.4</span> Placeholder to ensure correct clause numbering</h1></emu-clause>
+
+      <emu-clause id="sec-symbol-isregistered">
+        <h1><span class="secnum">20.4.2.5</span> Symbol.isRegistered ( <var>value</var> )</h1>
+
+        <p>When the <code>isRegistered</code> method is called with arguments <var>value</var>, the following steps are taken:</p>
+        <emu-alg><ol><li>Let <var>result</var> be <emu-xref aoid="Completion"><a href="https://tc39.es/ecma262/#sec-completion-ao">Completion</a></emu-xref>(<emu-xref href="#thissymbolvalue"><a href="https://tc39.es/ecma262/#thissymbolvalue">thisSymbolValue</a></emu-xref>(<var>value</var>)).</li><li>If <var>result</var> is an <emu-xref href="#sec-completion-record-specification-type"><a href="https://tc39.es/ecma262/#sec-completion-record-specification-type">abrupt completion</a></emu-xref>, return <emu-val>false</emu-val>.</li><li><emu-xref href="#assert"><a href="https://tc39.es/ecma262/#assert">Assert</a></emu-xref>: <emu-xref aoid="Type"><a href="https://tc39.es/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(! <var>result</var>) is Symbol.</li><li>For each element <var>e</var> of the GlobalSymbolRegistry <emu-xref href="#sec-list-and-record-specification-type"><a href="https://tc39.es/ecma262/#sec-list-and-record-specification-type">List</a></emu-xref> (see 20.4.2.2), do
+            a. If <emu-xref aoid="SameValue"><a href="https://tc39.es/ecma262/#sec-samevalue">SameValue</a></emu-xref>(<var>e</var>.[[Symbol]], !&nbsp;<var>result</var>) is true, return <emu-val>true</emu-val>.</li><li>Return <emu-val>false</emu-val>.</li></ol></emu-alg>
+      </emu-clause>
+
+      <emu-clause id="sec-symbol-iswellknown">
+        <h1><span class="secnum">20.4.2.6</span> Symbol.isWellKnown ( <var>value</var> )</h1>
+
+        <p>When the <code>isWellKnown</code> method is called with arguments <var>value</var>, the following steps are taken:</p>
+        <emu-alg><ol><li>Let <var>result</var> be <emu-xref aoid="Completion"><a href="https://tc39.es/ecma262/#sec-completion-ao">Completion</a></emu-xref>(<emu-xref href="#thissymbolvalue"><a href="https://tc39.es/ecma262/#thissymbolvalue">thisSymbolValue</a></emu-xref>(<var>value</var>)).</li><li>If <var>result</var> is an <emu-xref href="#sec-completion-record-specification-type"><a href="https://tc39.es/ecma262/#sec-completion-record-specification-type">abrupt completion</a></emu-xref>, return <emu-val>false</emu-val>.</li><li><emu-xref href="#assert"><a href="https://tc39.es/ecma262/#assert">Assert</a></emu-xref>: <emu-xref aoid="Type"><a href="https://tc39.es/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(! <var>result</var>) is Symbol.</li><li>If !&nbsp;<var>result</var> is one of the values listed in <emu-xref href="#table-well-known-symbols"><a href="https://tc39.es/ecma262/#table-well-known-symbols">Table 1</a></emu-xref>, return <emu-val>true</emu-val>.</li><li>Return <emu-val>false</emu-val>.</li></ol></emu-alg>
+      </emu-clause>
+    </emu-clause>
+  </emu-clause>
 </emu-clause><emu-annex id="sec-copyright-and-software-license">
       <h1><span class="secnum">A</span> Copyright &amp; Software License</h1>
       
       <h2>Copyright Notice</h2>
-      <p>© 2022 Your Name(s) Here</p>
+      <p>© 2022 Jordan Harband</p>
 
       <h2>Software License</h2>
       <p>All Software contained in this document ("Software") is protected by copyright and is being made available under the "BSD License", included below. This Software may be subject to third party rights (rights from parties other than Ecma International), including patent rights, and no licenses under such third party rights are granted under this license even if the third party concerned is a member of Ecma International. SEE THE ECMA CODE OF CONDUCT IN PATENT MATTERS AVAILABLE AT https://ecma-international.org/memento/codeofconduct.htm FOR INFORMATION REGARDING THE LICENSING OF PATENT CLAIMS THAT ARE REQUIRED TO IMPLEMENT ECMA INTERNATIONAL STANDARDS.</p>

@@ -4,20 +4,91 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
 <script src="./spec.js"></script>
 <pre class="metadata">
-title: Proposal Title Goes Here
+title: Symbol Predicates
 stage: -1
-contributors: Your Name(s) Here
+contributors:
+ - Jordan Harband
 </pre>
 
-<emu-clause id="sec-demo-clause">
-  <h1>This is an emu-clause</h1>
-  <p>This is an algorithm:</p>
-  <emu-alg>
-    1. Let _proposal_ be *undefined*.
-    1. If IsAccepted(_proposal_), then
-      1. Let _stage_ be *0*<sub>ℤ</sub>.
-    1. Else,
-      1. Let _stage_ be *-1*<sub>ℤ</sub>.
-    1. Return ? ToString(_proposal_).
-  </emu-alg>
+<style>
+#sec-placeholder, [href="#sec-placeholder"] {
+  display: none;
+}
+</style>
+<script>
+  Array.from(document.querySelectorAll('ol.toc li'), function (node) {
+    if (node.querySelector(':scope > [href="#sec-placeholder"]')) {
+      node.style.display = 'none';
+    }
+  });
+</script>
+
+<emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+<emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+
+<emu-clause id="sec-fundamental-objects">
+  <h1>Fundamental Objects</h1>
+
+  <emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+  <emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+  <emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+
+  <emu-clause id="sec-symbol-objects">
+    <h1>Symbol Objects</h1>
+
+    <emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+
+    <emu-clause id="sec-properties-of-the-symbol-constructor">
+      <h1>Properties of the Symbol Constructor</h1>
+
+      <emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+      <emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+      <emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+      <emu-clause id="sec-placeholder"><h1>Placeholder to ensure correct clause numbering</h1></emu-clause>
+
+      <emu-clause id="sec-symbol-isregistered">
+        <h1>Symbol.isRegistered ( _value_ )</h1>
+
+        <p>When the `isRegistered` method is called with arguments _value_, the following steps are taken:</p>
+        <emu-alg>
+          1. Let _result_ be Completion(thisSymbolValue(_value_)).
+          1. If _result_ is an abrupt completion, return *false*.
+          1. Assert: Type(! _result_) is Symbol.
+          1. For each element _e_ of the GlobalSymbolRegistry List (see 20.4.2.2), do
+            a. If SameValue(_e_.[[Symbol]], ! _result_) is true, return *true*.
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>
+
+      <emu-clause id="sec-symbol-iswellknown">
+        <h1>Symbol.isWellKnown ( _value_ )</h1>
+
+        <p>When the `isWellKnown` method is called with arguments _value_, the following steps are taken:</p>
+        <emu-alg>
+          1. Let _result_ be Completion(thisSymbolValue(_value_)).
+          1. If _result_ is an abrupt completion, return *false*.
+          1. Assert: Type(! _result_) is Symbol.
+          1. If ! _result_ is one of the values listed in <emu-xref href="#table-well-known-symbols"></emu-xref>, return *true*.
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>
+    </emu-clause>
+  </emu-clause>
 </emu-clause>
