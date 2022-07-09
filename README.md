@@ -4,9 +4,9 @@
 
 Stage 0
 
-Champions: _Robin Ricard_, _Ashley Claymore_
+Champions: _Robin Ricard_, _Ashley Claymore_, _Jordan Harband_
 
-Authors: _Robin Ricard_, _Ashley Claymore_
+Authors: _Robin Ricard_, _Ashley Claymore_, _Jordan Harband_
 
 ## Motivation
 
