@@ -2,7 +2,7 @@
 
 ## Status
 
-Stage 0
+Stage 1
 
 Champions: _Robin Ricard_, _Ashley Claymore_, _Jordan Harband_
 
