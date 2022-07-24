@@ -11,7 +11,7 @@ contributors:
 </pre>
 
 <style>
-[id=^="#sec-placeholder"], [href^="#sec-placeholder"] {
+[id^="sec-placeholder"], [href^="#sec-placeholder"] {
   display: none;
 }
 </style>
