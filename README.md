@@ -72,7 +72,7 @@ Takes an unknown value as the only argument, returns a boolean: `true` if the sy
 
 ## Implementations
 
-### Polyfill implementations
+Note that the two predicate packages belo are not polyfills; but they precisely match the current spec text, so they represent valid implementations of the proposal.
 
 - `Symbol.isRegistered(symbol)`: https://github.com/inspect-js/is-registered-symbol
 - `Symbol.isWellKnown(symbol)`: https://github.com/inspect-js/is-well-known-symbol
