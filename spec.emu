@@ -27,9 +27,7 @@ contributors:
           1. Let _result_ be Completion(thisSymbolValue(_value_)).
           1. If _result_ is an abrupt completion, return *false*.
           1. Assert: Type(! _result_) is Symbol.
-          1. For each element _e_ of the GlobalSymbolRegistry List (see 20.4.2.2), do
-            a. If SameValue(_e_.[[Symbol]], ! _result_) is true, return *true*.
-          1. Return *false*.
+          1. Return KeyForSymbol(! _result_) is String.
         </emu-alg>
       </emu-clause>
 
