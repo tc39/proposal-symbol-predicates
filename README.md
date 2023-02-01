@@ -2,9 +2,9 @@
 
 ## Status
 
-Stage 1
+Stage 2
 
-Champions: _Robin Ricard_, _Ashley Claymore_, _Jordan Harband_
+Champions: _Ashley Claymore_, _Jordan Harband_
 
 Authors: _Robin Ricard_, _Ashley Claymore_, _Jordan Harband_
 
